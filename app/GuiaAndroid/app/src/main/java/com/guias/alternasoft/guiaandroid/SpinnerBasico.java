@@ -9,14 +9,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SpinnerBasico extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private TextView lblSeleccionado;
     protected ArrayAdapter<CharSequence> charSequenceArrayAdapter;
     private Spinner spinner;
 
     private int posicion;
     private String seleccion;
+
+    private String[] strOpciones = {"Selección 1", "Selección 2", "Selección 3", "Selección 4"};
+    private Spinner spinnerBasico2;
+    protected ArrayAdapter<String> adaptadorString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +44,20 @@ public class SpinnerBasico extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void InicializarControles(){
+        this.lblSeleccionado = (TextView)findViewById(R.id.lblSeleccionado);
+
         this.spinner = (Spinner)findViewById(R.id.spinnerBasico);
         this.charSequenceArrayAdapter = ArrayAdapter.createFromResource(this, R.array.DatosSpinnerBasico
                 , android.R.layout.simple_spinner_item);
         this.charSequenceArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinner.setAdapter((this.charSequenceArrayAdapter));
-
         this.spinner.setOnItemSelectedListener(this);
+
+        this.spinnerBasico2 = (Spinner)findViewById(R.id.spinnerBasico2);
+        this.adaptadorString = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.strOpciones);
+        //adaptadorString.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        this.spinnerBasico2.setAdapter(this.adaptadorString);
+        this.spinnerBasico2.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -52,6 +65,15 @@ public class SpinnerBasico extends AppCompatActivity implements AdapterView.OnIt
         this.posicion = position;
         seleccion = parent.getItemAtPosition(posicion).toString();
         Toast.makeText(this, "=> " + this.seleccion, Toast.LENGTH_LONG).show();
+
+        Object o = parent.getItemAtPosition(posicion);
+        //this.lblSeleccionado.setText(o.getClass().toString());
+
+        if(o instanceof CharSequence){
+            this.lblSeleccionado.append("S - Adaptador de CharSequense");
+        }else if(o instanceof String){
+            this.lblSeleccionado.append("C - Adaptador de String");
+        }
     }
 
     @Override
