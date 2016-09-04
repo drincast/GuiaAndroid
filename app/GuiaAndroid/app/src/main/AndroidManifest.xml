@@ -9,15 +9,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SpinnerBasico"
             android:label="@string/title_activity_spinner_basico"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ToolBarEnActivity"
+            android:label="@string/title_activity_tool_bar_en"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PruebasActivity"
+            android:label="@string/title_activity_pruebas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

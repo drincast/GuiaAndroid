@@ -10,4 +10,6 @@
         <item>Opción 5</item>
     </string-array>
     <string name="title_activity_spinner_basico">SpinnerBasico</string>
+    <string name="title_activity_tool_bar_en">ToolBarEnActivity</string>
+    <string name="title_activity_pruebas">PruebasActivity</string>
 </resources>
